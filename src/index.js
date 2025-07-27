@@ -4,12 +4,14 @@ import "./index.css";
 import Home from "./Home";
 import Movie from "./Movie";
 import NotFoundPage from "./NotFoundPage";
+import Results from "./Results";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
     { path: "/", element: <Home /> },
     { path: "/movie", element: <Movie /> },
+    { path: "/results", element: <Results /> },
     { path: "*", element: <NotFoundPage /> },
 ]);
 
