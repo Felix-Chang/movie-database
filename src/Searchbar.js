@@ -1,8 +1,8 @@
 import { AiOutlineSearch } from "react-icons/ai";
 
-export default function Searchbar({ value, onChange, onSubmit }) {
+export default function Searchbar({ value, onChange, onSearch }) {
     return (
-        <form className="searchbar-container">
+        <form className="searchbar-container" onSubmit={onSearch}>
             <input
                 type="text"
                 value={value}

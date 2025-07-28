@@ -10,8 +10,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
     { path: "/", element: <Home /> },
-    { path: "/movie", element: <Movie /> },
     { path: "/results", element: <Results /> },
+    { path: "/results/movie/:title", element: <Movie /> },
     { path: "*", element: <NotFoundPage /> },
 ]);
 
