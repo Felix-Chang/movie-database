@@ -1,6 +1,14 @@
-// import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 export default function Movie() {
 
-    return <div>Movie</div>;
+    const location = useLocation();
+
+    const data = location.state?.data;
+    console.log(data)
+
+    return <div>
+        Movie
+    </div>;
 }

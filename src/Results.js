@@ -19,7 +19,6 @@ export default function Results() {
             const data = await res.json();
             console.log(data.results);
             setMovieList(data.results);
-            localStorage.setItem("movieList", JSON.stringify(data.results));
             localStorage.setItem("query", query);
         } catch (err) {
             console.error("Fetch error:", err);
@@ -27,46 +26,49 @@ export default function Results() {
     };
 
     useEffect(() => {
-        const savedQuery = localStorage.getItem("query");
-        const savedList = JSON.parse(localStorage.getItem("movieList"));
-
-        if (savedList && savedQuery === query) {
-            setMovieList(savedList);
-        } else {
-            getMovies();
-        }
+        getMovies();
     }, [query]);
 
     return (
         <div>
             <h1 className="results-title">Search Results</h1>
             <Link to="/">
-                <h4>Back</h4>
+                <h4 className="back-button">Back</h4>
             </Link>
-            <ul>
-                {movieList.map((movie) => (
-                    <li
-                        key={
-                            movie.original_title +
-                            movie.release_date.split("-")[0]
+            {movieList.map((movie) => (
+                <div
+                    key={
+                        movie.original_title + movie.release_date.split("-")[0]
+                    }
+                    className="listed-movie-container"
+                >
+                    <img
+                        src={
+                            movie.poster_path
+                                ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                                : "https://image.tmdb.org/t/p/w300_and_h450_bestv2/wwemzKWzjKYJFfCeiB57q3r4Bcm.png"
                         }
-                        className="listed-movie"
+                        alt={`${movie.title} ${
+                            movie.release_date.split("-")[0]
+                        }`}
+                        className="movie-poster"
+                    />
+                    <Link
+                        to={`/results/movie/${encodeURIComponent(
+                            movie.original_title +
+                                movie.release_date.split("-")[0]
+                        )}`}
+                        state={{ data: movie }}
                     >
-                        <Link
-                            to={`/results/movie/${encodeURIComponent(
-                                movie.original_title +
-                                    movie.release_date.split("-")[0]
-                            )}`}
-                        >
-                            <h3>
-                                {`${movie.original_title} (${
-                                    movie.release_date.split("-")[0]
-                                })`}
-                            </h3>
-                        </Link>
-                    </li>
-                ))}
-            </ul>
+                        <h3 className="movie-name">
+                            {`${movie.original_title} (${
+                                movie.release_date.split("-")[0]
+                            })`}
+                        </h3>
+                    </Link>
+                    <div className="movie-description">{movie.overview}</div>
+                </div>
+            ))}
         </div>
     );
 }

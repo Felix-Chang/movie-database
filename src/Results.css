@@ -1,7 +1,40 @@
 .results-title {
-
+    margin-left: 40px;
 }
 
-.listed-movie {
+.back-button {
+    margin-left: 40px;
+}
 
+.listed-movie-container {
+    display: flex;
+    border: 1px solid;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    border-radius: 25px;
+    overflow: hidden;
+    width: 100%;
+    height: 230px;
+    align-items: start;
+}
+
+.movie-poster {
+    width: 125px;
+    height: 80%;
+    margin: 10px;
+    border-radius: 15px;
+}
+
+.movie-name {
+    margin: 20px;
+}
+
+.movie-description {
+    margin:20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
 }
