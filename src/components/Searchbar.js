@@ -1,4 +1,5 @@
 import { AiOutlineSearch } from "react-icons/ai";
+import "./Searchbar.css"
 
 export default function Searchbar({ value, onChange, onSearch }) {
     return (
@@ -12,7 +13,7 @@ export default function Searchbar({ value, onChange, onSearch }) {
                 placeholder="Search movie..."
                 className="searchbar-input-field"
             />
-            <button>
+            <button className="searchbar-button">
                 <AiOutlineSearch />
             </button>
         </form>

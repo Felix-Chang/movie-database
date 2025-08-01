@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Results.css";
+import useStore from "./store";
 
 export default function Results() {
     const [movieList, setMovieList] = useState([]);
-    const location = useLocation();
-    const navigate = useNavigate();
 
     const apiKey = "39909455bd29b0abdae61f42f38b4206";
-    const query = location.state?.query || localStorage.getItem("query");
+    const query = useStore((state) => state.query);
     const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(
         query
     )}`;
+
+    const { setSelectedMovie } = useStore();
 
     const getMovies = async () => {
         try {
@@ -30,7 +31,7 @@ export default function Results() {
     }, [query]);
 
     return (
-        <div>
+        <div className="background">
             <h1 className="results-title">Search Results</h1>
             <Link to="/">
                 <h4 className="back-button">Back</h4>
@@ -58,7 +59,7 @@ export default function Results() {
                             movie.original_title +
                                 movie.release_date.split("-")[0]
                         )}`}
-                        state={{ data: movie }}
+                        onClick={() => setSelectedMovie(movie)}
                     >
                         <h3 className="movie-name">
                             {`${movie.original_title} (${

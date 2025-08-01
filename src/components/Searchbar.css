@@ -1,0 +1,29 @@
+.searchbar-input-field {
+    border: 3px solid white;
+    border-radius: 600px;
+    padding: 5px 20px;
+    padding-bottom: 7px;
+    font-size: 20px;
+    font-family: "Nata Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.searchbar-input-field:focus {
+    outline: none;
+    border: 3px solid rgb(81, 208, 251);
+}
+
+.searchbar-button {
+    border: none;
+    color: rgb(116,116,116);
+    position: absolute;
+    margin-left: 260px;
+    margin-top: 10px;
+    background: none;
+    cursor: pointer; 
+    font-size: 23px;
+}

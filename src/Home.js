@@ -1,28 +1,31 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./Home.css";
-import Searchbar from "./Searchbar.js";
+import Searchbar from "./components/Searchbar.js";
+import useStore from "./components/store.js";
 
 function Home() {
-    const [query, setQuery] = useState("");
+    const setGlobalQuery = useStore((state) => state.setQuery);
+    const [inputValue, setInputValue] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
 
     const navigate = useNavigate();
 
     const handleSearchbarUpdate = (input) => {
         setErrorMessage("");
-        setQuery(input);
+        setInputValue(input);
         // console.log(searchbarText);
     };
 
     const handleSearchEnter = (e) => {
         e.preventDefault();
-        const searchName = query.trim();
+        const searchName = inputValue.trim();
 
         if (!searchName) {
             setErrorMessage("Invalid search: Please enter a movie name");
         } else {
-            navigate("/results", { state: { query } });
+            setGlobalQuery(inputValue);
+            navigate("/results");
         }
     };
 
@@ -32,7 +35,7 @@ function Home() {
                 <h1 className="app-title">Movie database</h1>
                 {errorMessage && <h2 className="error">{errorMessage}</h2>}
                 <Searchbar
-                    value={query}
+                    value={inputValue}
                     onChange={(input) => handleSearchbarUpdate(input)}
                     onSearch={handleSearchEnter}
                 />

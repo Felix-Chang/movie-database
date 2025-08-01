@@ -2,9 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import Home from "./Home";
-import Movie from "./Movie";
-import NotFoundPage from "./NotFoundPage";
-import Results from "./Results";
+import Movie from "./components/Movie";
+import NotFoundPage from "./components/NotFoundPage";
+import Results from "./components/Results";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 

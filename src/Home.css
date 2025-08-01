@@ -5,10 +5,12 @@
   align-items: center;
   height: 100vh;
   vertical-align: center;
+  background-color: #71868d;
 }
 
 .app-title{
   font-size: 50px;
+  color: white;
 }
 
 .error{
