@@ -1,3 +1,4 @@
+import { BiArrowBack } from "react-icons/bi";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Results.css";
@@ -20,7 +21,6 @@ export default function Results() {
             const data = await res.json();
             console.log(data.results);
             setMovieList(data.results);
-            localStorage.setItem("query", query);
         } catch (err) {
             console.error("Fetch error:", err);
         }
@@ -32,44 +32,42 @@ export default function Results() {
 
     return (
         <div className="background">
-            <h1 className="results-title">Search Results</h1>
-            <Link to="/">
-                <h4 className="back-button">Back</h4>
+            <h1 className="results-title">
+                Search results for{" "}
+                <span className="query-display">"{query}"</span>
+            </h1>
+            <Link to="/" className="back-button">
+                <BiArrowBack className="arrow-back" />
+                <h4>Back</h4>
             </Link>
-            {movieList.map((movie) => (
-                <div
-                    key={
-                        movie.original_title + movie.release_date.split("-")[0]
-                    }
-                    className="listed-movie-container"
-                >
-                    <img
-                        src={
-                            movie.poster_path
-                                ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-                                : "https://image.tmdb.org/t/p/w300_and_h450_bestv2/wwemzKWzjKYJFfCeiB57q3r4Bcm.png"
-                        }
-                        alt={`${movie.title} ${
-                            movie.release_date.split("-")[0]
-                        }`}
-                        className="movie-poster"
-                    />
+
+            <div className="listed-movie-container-grid">
+                {movieList.map((movie) => (
                     <Link
                         to={`/results/movie/${encodeURIComponent(
                             movie.original_title +
                                 movie.release_date.split("-")[0]
                         )}`}
                         onClick={() => setSelectedMovie(movie)}
+                        className="listed-movie-card"
                     >
-                        <h3 className="movie-name">
-                            {`${movie.original_title} (${
+                        <img
+                            src={
+                                movie.poster_path
+                                    ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                                    : "https://image.tmdb.org/t/p/w300_and_h450_bestv2/wwemzKWzjKYJFfCeiB57q3r4Bcm.png"
+                            }
+                            alt={`${movie.title} ${
                                 movie.release_date.split("-")[0]
-                            })`}
-                        </h3>
+                            }`}
+                            className="movie-poster"
+                        />
+                        <div className="movie-title">
+                            {movie.title} ({movie.release_date.split("-")[0]})
+                        </div>
                     </Link>
-                    <div className="movie-description">{movie.overview}</div>
-                </div>
-            ))}
+                ))}
+            </div>
         </div>
     );
 }

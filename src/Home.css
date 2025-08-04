@@ -1,23 +1,58 @@
 .title{
-  margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   vertical-align: center;
   background-color: #71868d;
+  min-height: 200px;
+}
+
+.container {
+  background-color: rgb(58, 119, 199);
+  border-radius: 25px;
+  padding: 80px;
 }
 
 .app-title{
   font-size: 50px;
   color: white;
-}
-
-.error{
-  color: red;
+  display: flex;
+  justify-content: center;
+  font-family: "Nata Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-style: normal;
+  text-align: center;
 }
 
 .searchbar-container{
   display: flex;
   justify-content: center;
+}
+
+.error-wrapper{
+  position: absolute;
+  display: flex;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: normal;
+  word-wrap: break-word;
+  text-align: center;
+}
+
+.error-message{
+  color: rgb(210, 4, 4);
+  font-family: "Nata Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 20px;
+  animation: pop 0.5s ease;
+}
+
+@keyframes pop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.2); }
+  100% { transform: scale(1); }
 }

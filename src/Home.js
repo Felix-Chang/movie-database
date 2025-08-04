@@ -31,14 +31,19 @@ function Home() {
 
     return (
         <div className="title">
-            <div>
+            <div className="container">
                 <h1 className="app-title">Movie database</h1>
-                {errorMessage && <h2 className="error">{errorMessage}</h2>}
+
                 <Searchbar
                     value={inputValue}
                     onChange={(input) => handleSearchbarUpdate(input)}
                     onSearch={handleSearchEnter}
                 />
+                {errorMessage && (
+                    <div className="error-wrapper">
+                        <h2 className="error-message">{errorMessage}</h2>
+                    </div>
+                )}
             </div>
         </div>
     );
