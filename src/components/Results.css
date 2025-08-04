@@ -1,22 +1,23 @@
-.background {
+.results-page {
     display: flex;
     flex-direction: column;
     margin: 0;
-    height: 100%;
-    background-color: #71868d;
+    min-height: 100%;
+    background-color: #34699A;
 }
 
 .results-title {
     margin-left: 40px;
-    color: white;
+    color: #FDF5AA;
     font-family: "Nata Sans", sans-serif;
     font-optical-sizing: auto;
     font-weight: bold;
     font-style: normal;
+    margin-top: 50px;
 }
 
 .query-display {
-    color: rgb(177, 177, 177);
+    color: white;
 }
 
 .back-button {

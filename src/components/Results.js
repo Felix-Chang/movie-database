@@ -31,7 +31,7 @@ export default function Results() {
     }, [query]);
 
     return (
-        <div className="background">
+        <div className="results-page">
             <h1 className="results-title">
                 Search results for{" "}
                 <span className="query-display">"{query}"</span>

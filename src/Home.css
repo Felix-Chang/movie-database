@@ -4,19 +4,22 @@
   align-items: center;
   height: 100vh;
   vertical-align: center;
-  background-color: #71868d;
+  background-color: #34699A;
   min-height: 200px;
 }
 
 .container {
-  background-color: rgb(58, 119, 199);
+  background-color: #58A0C8;
   border-radius: 25px;
-  padding: 80px;
+  padding-left: 80px;
+  padding-right: 80px;
+  padding-bottom: 80px;
+  padding-top: 30px;
 }
 
 .app-title{
   font-size: 50px;
-  color: white;
+  color: #FDF5AA;
   display: flex;
   justify-content: center;
   font-family: "Nata Sans", sans-serif;
