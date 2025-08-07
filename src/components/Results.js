@@ -2,16 +2,20 @@ import { BiArrowBack } from "react-icons/bi";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Results.css";
+import RenderPageButtons from "./RenderPageButtons";
 import useStore from "./store";
+import noPoster from "../assets/no-poster.png";
 
 export default function Results() {
     const [movieList, setMovieList] = useState([]);
 
     const apiKey = "39909455bd29b0abdae61f42f38b4206";
     const query = useStore((state) => state.query);
-    const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+    const url = `https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&query=${encodeURIComponent(
         query
-    )}`;
+    )}&page=${currentPage}`;
 
     const { setSelectedMovie } = useStore();
 
@@ -19,8 +23,9 @@ export default function Results() {
         try {
             const res = await fetch(url);
             const data = await res.json();
-            console.log(data.results);
+            console.log(data);
             setMovieList(data.results);
+            setTotalPages(data.total_pages);
         } catch (err) {
             console.error("Fetch error:", err);
         }
@@ -28,7 +33,7 @@ export default function Results() {
 
     useEffect(() => {
         getMovies();
-    }, [query]);
+    }, [query, currentPage]);
 
     return (
         <div className="results-page">
@@ -40,34 +45,50 @@ export default function Results() {
                 <BiArrowBack className="arrow-back" />
                 <h4>Back</h4>
             </Link>
-
             <div className="listed-movie-container-grid">
-                {movieList.map((movie) => (
-                    <Link
-                        to={`/results/movie/${encodeURIComponent(
-                            movie.original_title +
-                                movie.release_date.split("-")[0]
-                        )}`}
-                        onClick={() => setSelectedMovie(movie)}
-                        className="listed-movie-card"
-                    >
-                        <img
-                            src={
-                                movie.poster_path
-                                    ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-                                    : "https://image.tmdb.org/t/p/w300_and_h450_bestv2/wwemzKWzjKYJFfCeiB57q3r4Bcm.png"
-                            }
-                            alt={`${movie.title} ${
-                                movie.release_date.split("-")[0]
-                            }`}
-                            className="movie-poster"
-                        />
-                        <div className="movie-title">
-                            {movie.title} ({movie.release_date.split("-")[0]})
-                        </div>
-                    </Link>
-                ))}
+                {movieList
+                    .filter(
+                        (movie) =>
+                            movie.media_type === "movie" ||
+                            movie.media_type === "tv"
+                    )
+                    .map((movie) => {
+                        const title = movie.title || movie.name;
+                        const year =
+                            movie.release_date?.split("-")[0] ||
+                            movie.first_air_date?.split("-")[0] ||
+                            "N/A";
+
+                        return (
+                            <Link
+                                to={`/results/movie/${encodeURIComponent(
+                                    title + year
+                                )}`}
+                                onClick={() => setSelectedMovie(movie)}
+                                className="listed-movie-card"
+                            >
+                                <div className="gradient-overlay" />
+                                <img
+                                    src={
+                                        movie.poster_path
+                                            ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                                            : noPoster
+                                    }
+                                    alt={title}
+                                    className="movie-poster"
+                                />
+                                <div className="movie-title">
+                                    {title} ({year})
+                                </div>
+                            </Link>
+                        );
+                    })}
             </div>
+            <RenderPageButtons
+                totalPages={totalPages}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+            />
         </div>
     );
 }

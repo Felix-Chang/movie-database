@@ -1,3 +1,7 @@
+.searchbar-container {
+    display: flex;
+}
+
 .searchbar-input-field {
     border: 3px solid white;
     border-radius: 600px;

@@ -1,0 +1,44 @@
+.pagination-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 30px;
+    padding: 7px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    background-color: #58A0C8;
+    border-radius: 5px;
+    min-width: 300px;
+}
+
+.active {
+    display: flex;
+    color: white;
+    margin: 5px;
+    text-decoration: underline;
+    font-weight: bold;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.ellipsis {
+    display: flex;
+    color: white;
+    margin: 5px;
+    border: none;
+    background: none;
+    cursor: default;
+}
+
+.inactive {
+    display: flex;
+    color: white;
+    margin: 5px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}

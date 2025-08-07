@@ -14,7 +14,6 @@ function Home() {
     const handleSearchbarUpdate = (input) => {
         setErrorMessage("");
         setInputValue(input);
-        // console.log(searchbarText);
     };
 
     const handleSearchEnter = (e) => {
@@ -38,12 +37,13 @@ function Home() {
                     value={inputValue}
                     onChange={(input) => handleSearchbarUpdate(input)}
                     onSearch={handleSearchEnter}
+                    className="searchbar-container"
                 />
-                {errorMessage && (
-                    <div className="error-wrapper">
-                        <h2 className="error-message">{errorMessage}</h2>
-                    </div>
-                )}
+                <div className="error-wrapper">
+                    <h2 key={errorMessage} className="error-message">
+                        {errorMessage}
+                    </h2>
+                </div>
             </div>
         </div>
     );

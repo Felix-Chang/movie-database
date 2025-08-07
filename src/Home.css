@@ -1,19 +1,23 @@
 .title{
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
   vertical-align: center;
   background-color: #34699A;
-  min-height: 200px;
 }
 
 .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: #58A0C8;
   border-radius: 25px;
   padding-left: 80px;
   padding-right: 80px;
-  padding-bottom: 80px;
+  padding-bottom: 30px;
   padding-top: 30px;
 }
 
@@ -35,22 +39,18 @@
 }
 
 .error-wrapper{
-  position: absolute;
   display: flex;
-  left: 50%;
-  transform: translateX(-50%);
-  white-space: normal;
-  word-wrap: break-word;
-  text-align: center;
 }
 
 .error-message{
   color: rgb(210, 4, 4);
+  text-align: center;
   font-family: "Nata Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: 600;
   font-style: normal;
   font-size: 20px;
+  min-height: 24px;
   animation: pop 0.5s ease;
 }
 
